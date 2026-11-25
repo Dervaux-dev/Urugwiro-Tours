@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ikaze — Discover Rwanda</title>
+  <meta name="description" content="Ikaze is Rwanda's official tourism app. Discover national parks, cultural sites, genocide memorials, and adventures across all 30 districts."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── Reset & Base ───────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:       #00A551;
+      --green-dark:  #007A3D;
+      --green-light: #E8F8EE;
+      --yellow:      #FFD700;
+      --blue:        #1A56A0;
+      --white:       #FFFFFF;
+      --gray-50:     #F7F9F7;
+      --gray-100:    #EEF2EE;
+      --gray-200:    #D8E8D8;
+      --gray-500:    #6B7E6B;
+      --gray-900:    #0F1F0F;
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   20px;
+      --radius-xl:   28px;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md:   0 4px 20px rgba(0,0,0,0.11);
+      --shadow-lg:   0 8px 40px rgba(0,0,0,0.15);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Navbar ─────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.4rem; font-weight: 800; color: var(--green);
+    }
+    .nav-logo span { font-size: 1.6rem; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500; color: var(--gray-500);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green); color: var(--white) !important;
+      padding: 0.5rem 1.2rem; border-radius: var(--radius-sm);
+      font-weight: 600 !important; transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--green-dark) !important; }
+
+    /* ── Hero ───────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(145deg, var(--green-dark) 0%, var(--green) 60%, #00C864 100%);
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-hills {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 160px;
+    }
+    .hero-hills svg { width: 100%; height: 100%; }
+    .hero-flag-bar {
+      position: absolute; top: 0; right: 0; width: 8px; height: 100%;
+      display: flex; flex-direction: column;
+    }
+    .hero-flag-bar div { flex: 1; }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-text { color: var(--white); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-sm); padding: 6px 14px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.0;
+      margin-bottom: 0.4rem;
+    }
+    .hero-title .kiny {
+      font-size: 1rem; font-weight: 400; opacity: 0.75;
+      display: block; letter-spacing: 3px; margin-bottom: 0.5rem;
+    }
+    .hero-sub {
+      font-size: 1.1rem; opacity: 0.85; margin-bottom: 2rem; max-width: 460px;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;
+    }
+    .badge {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-sm); padding: 6px 12px;
+      font-size: 0.82rem; font-weight: 500;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn-primary {
+      background: var(--white); color: var(--green);
+      padding: 0.9rem 2rem; border-radius: var(--radius-md);
+      font-weight: 700; font-size: 1rem;
+      display: flex; align-items: center; gap: 8px;
+      box-shadow: var(--shadow-md); transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: 0.9rem 2rem; border-radius: var(--radius-md);
+      font-weight: 600; font-size: 1rem;
+      display: flex; align-items: center; gap: 8px;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+    /* ── Phone Mockup ───────────────────────── */
+    .hero-phone {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .phone-frame {
+      width: 260px; height: 520px;
+      background: var(--gray-900);
+      border-radius: 36px;
+      border: 6px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .phone-screen {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #007A3D 0%, #00A551 40%, #F7F9F7 40%);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 2rem 1.2rem 1.2rem;
+    }
+    .phone-flag { font-size: 2.5rem; margin-bottom: 0.4rem; }
+    .phone-emoji-row { font-size: 1.1rem; letter-spacing: 4px; margin-bottom: 1rem; }
+    .phone-app-title {
+      color: var(--white); font-size: 1.6rem; font-weight: 900; margin-bottom: 0.2rem;
+    }
+    .phone-app-sub { color: rgba(255,255,255,0.75); font-size: 0.65rem; letter-spacing: 2px; margin-bottom: 1rem; }
+    .phone-divider { width: 60%; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 1rem; }
+    .phone-question { color: var(--white); font-size: 0.85rem; font-weight: 700; margin-bottom: 1.2rem; }
+    .phone-btn {
+      width: 100%; border-radius: 10px; padding: 0.7rem 1rem;
+      font-size: 0.75rem; font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 0.6rem;
+    }
+    .phone-btn-rw { background: var(--white); color: var(--green); }
+    .phone-btn-fg {
+      background: transparent; color: var(--green);
+      border: 2px solid var(--green);
+    }
+    .phone-btn-emoji { font-size: 1rem; }
+    .phone-btn-label { flex: 1; }
+    .phone-btn-sub { font-size: 0.6rem; font-weight: 400; opacity: 0.7; display: block; }
+    .phone-notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 22px; background: var(--gray-900);
+      border-radius: 0 0 14px 14px; z-index: 2;
+    }
+    .phone-glow {
+      position: absolute;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%);
+      top: -50px; right: -50px; pointer-events: none;
+    }
+
+    /* ── Stats Bar ──────────────────────────── */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-100);
+      padding: 1.5rem 5%;
+    }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-size: 2rem; font-weight: 900; color: var(--green);
+      display: block;
+    }
+    .stat-lbl { font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
+
+    /* ── Section shared ─────────────────────── */
+    section { padding: 80px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800; line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--gray-500); max-width: 540px;
+    }
+    .section-head { margin-bottom: 3rem; }
+
+    /* ── Features ───────────────────────────── */
+    #features { background: var(--gray-50); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 2rem; border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm); transition: transform .25s, box-shadow .25s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .feature-icon {
+      width: 52px; height: 52px; border-radius: var(--radius-md);
+      background: var(--green-light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.5rem; margin-bottom: 1.2rem;
+    }
+    .feature-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature-desc { font-size: 0.9rem; color: var(--gray-500); line-height: 1.6; }
+
+    /* ── Video Section ──────────────────────── */
+    #videos { background: var(--white); }
+    .videos-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .video-card {
+      background: var(--gray-900); border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-md);
+      transition: transform .25s;
+    }
+    .video-card:hover { transform: translateY(-4px); }
+    .video-thumb {
+      position: relative; padding-top: 56.25%;
+      background: linear-gradient(135deg, #0F3D1F 0%, #007A3D 100%);
+      overflow: hidden; cursor: pointer;
+    }
+    .video-thumb-emoji {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.5rem;
+    }
+    .video-thumb-emoji span:first-child { font-size: 3rem; }
+    .video-thumb-emoji span:last-child {
+      font-size: 0.8rem; color: rgba(255,255,255,0.7); font-weight: 500;
+    }
+    .play-btn {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-circle {
+      width: 56px; height: 56px; background: rgba(255,255,255,0.9);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; transition: transform .2s, background .2s;
+      padding-left: 4px;
+    }
+    .video-card:hover .play-circle { transform: scale(1.1); background: var(--white); }
+    .video-card-body { padding: 1.2rem; }
+    .video-card-title { color: var(--white); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .video-card-sub { color: rgba(255,255,255,0.55); font-size: 0.8rem; }
+    .video-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--yellow); font-size: 0.8rem; font-weight: 600;
+      margin-top: 0.75rem; transition: opacity .2s;
+    }
+    .video-card-link:hover { opacity: 0.8; }
+    .video-add-banner {
+      border: 2px dashed var(--gray-200); border-radius: var(--radius-lg);
+      padding: 2.5rem; text-align: center; color: var(--gray-500);
+      margin-top: 1.5rem;
+    }
+    .video-add-banner span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ── Download Section ───────────────────── */
+    #download {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      text-align: center; color: var(--white);
+    }
+    #download .section-title { color: var(--white); }
+    #download .section-sub { color: rgba(255,255,255,0.8); margin: 0 auto 2.5rem; }
+    .download-cards {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .download-card {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-lg); padding: 2rem 2.5rem;
+      min-width: 220px; transition: background .2s, transform .2s;
+      cursor: pointer;
+    }
+    .download-card:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+    .download-card-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .download-card-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .download-card-sub { font-size: 0.8rem; opacity: 0.7; }
+    .apk-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white); color: var(--green);
+      padding: 1rem 2.5rem; border-radius: var(--radius-md);
+      font-weight: 800; font-size: 1.05rem;
+      box-shadow: var(--shadow-lg); transition: transform .2s;
+    }
+    .apk-btn:hover { transform: translateY(-2px); }
+    .apk-btn-sub {
+      display: block; font-size: 0.72rem; font-weight: 500;
+      color: var(--gray-500); margin-top: 0.3rem; text-align: center;
+    }
+    .download-note {
+      margin-top: 1.5rem; font-size: 0.82rem;
+      opacity: 0.65; line-height: 1.6;
+    }
+
+    /* ── Districts Section ──────────────────── */
+    #districts { background: var(--gray-50); }
+    .provinces-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .province-card {
+      background: var(--white); border-radius: var(--radius-md);
+      padding: 1.5rem; border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+    }
+    .province-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.6rem; }
+    .province-districts { font-size: 0.8rem; color: var(--gray-500); line-height: 1.8; }
+
+    /* ── Footer ─────────────────────────────── */
+    footer {
+      background: var(--gray-900); color: var(--white);
+      padding: 3rem 5% 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-logo {
+      font-size: 1.8rem; font-weight: 900; color: var(--green);
+      margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;
+    }
+    .footer-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 280px; }
+    .footer-heading { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.55); transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1100px; margin: 2rem auto 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: rgba(255,255,255,0.35);
+    }
+    .footer-flag { display: flex; gap: 4px; align-items: center; }
+    .flag-stripe { width: 18px; height: 10px; border-radius: 2px; }
+
+    /* ── Mobile responsive ──────────────────── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-phone { order: -1; }
+      .phone-frame { width: 220px; height: 440px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <span>🇷🇼</span> Ikaze
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#videos">Videos</a>
+    <a href="#districts">Districts</a>
+    <a href="#download" class="nav-cta">Download App</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-flag-bar">
+    <div style="background:#00A551"></div>
+    <div style="background:#FFD700;flex:0.3"></div>
+    <div style="background:#1A56A0"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">🇷🇼 Official Rwanda Tourism App</div>
+      <h1 class="hero-title">
+        <span class="kiny">Murakaza Neza — Welcome</span>
+        Ikaze
+      </h1>
+      <p class="hero-sub">
+        Discover every corner of Rwanda — from mountain gorillas to sacred memorials.
+        Personalised for locals by district, and complete for every visitor.
+      </p>
+      <div class="hero-badges">
+        <div class="badge">🦍 50+ Tourist Sites</div>
+        <div class="badge">🗺️ All 30 Districts</div>
+        <div class="badge">💚 Local Pricing</div>
+        <div class="badge">📱 Free Download</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#download" class="btn-primary">📥 Download Free App</a>
+        <a href="#videos" class="btn-outline">▶️ Watch Videos</a>
+      </div>
+    </div>
+
+    <div class="hero-phone">
+      <div class="phone-glow"></div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-flag">🇷🇼</div>
+          <div class="phone-emoji-row">🦍🌿🏔️</div>
+          <div class="phone-app-title">Ikaze</div>
+          <div class="phone-app-sub">LAND OF A THOUSAND HILLS</div>
+          <div class="phone-divider"></div>
+          <div class="phone-question">Who are you?</div>
+          <div class="phone-btn phone-btn-rw">
+            <span class="phone-btn-emoji">🇷🇼</span>
+            <span class="phone-btn-label">
+              Ndi Umunyarwanda
+              <span class="phone-btn-sub">I am Rwandan</span>
+            </span>
+            <span>→</span>
+          </div>
+          <div class="phone-btn phone-btn-fg">
+            <span class="phone-btn-emoji">✈️</span>
+            <span class="phone-btn-label">
+              I'm a Visitor
+              <span class="phone-btn-sub">International Tourist</span>
+            </span>
+            <span>→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-hills">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0,160 L0,100 Q200,20 400,80 Q600,140 800,60 Q1000,-20 1200,70 Q1350,120 1440,80 L1440,160 Z" fill="white"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ══ STATS ════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">50+</span><span class="stat-lbl">Tourist Sites</span></div>
+    <div class="stat-item"><span class="stat-num">30</span><span class="stat-lbl">Districts Covered</span></div>
+    <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">National Parks</span></div>
+    <div class="stat-item"><span class="stat-num">Free</span><span class="stat-lbl">Always Free</span></div>
+  </div>
+</div>
+
+<!-- ══ FEATURES ═════════════════════════════════════════════ -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Why Ikaze?</div>
+      <h2 class="section-title">Everything you need to explore Rwanda</h2>
+      <p class="section-sub">One platform. Two experiences. For Rwandans by district, for visitors by category.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <div class="feature-title">District-Based Discovery</div>
+        <p class="feature-desc">Rwandans select their home district and instantly see nearby tourist sites, with local resident pricing clearly shown.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💚</div>
+        <div class="feature-title">Local Resident Pricing</div>
+        <p class="feature-desc">See RWF resident rates for every site — no more confusion about which price applies to Rwandan citizens and EAC residents.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✈️</div>
+        <div class="feature-title">Full Visitor Directory</div>
+        <p class="feature-desc">International tourists get a browseable directory of all 50+ sites, filtered by category — parks, museums, memorials, lakes & more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🦍</div>
+        <div class="feature-title">All 4 National Parks</div>
+        <p class="feature-desc">Volcanoes, Akagera, Nyungwe, and Gishwati-Mukura — with detailed activity guides, best-time info, and permits overview.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕊️</div>
+        <div class="feature-title">UNESCO Memorials</div>
+        <p class="feature-desc">All 4 UNESCO-inscribed (2023) Genocide Against the Tutsi memorials, treated with deep respect and proper historical context.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Works Offline</div>
+        <p class="feature-desc">All site data is bundled in-app — no internet required once installed. Perfect for rural areas with limited connectivity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VIDEOS ════════════════════════════════════════════════ -->
+<section id="videos">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">📹 Rwanda in Motion</div>
+      <h2 class="section-title">See Rwanda before you go</h2>
+      <p class="section-sub">Watch official tour videos of Rwanda's most iconic destinations.</p>
+    </div>
+    <div class="videos-grid" id="videos-grid">
+      <!-- Rendered dynamically from js/videos.js -->
+    </div>
+
+    <!-- Add More Videos Banner -->
+    <div class="video-add-banner">
+      <span>➕</span>
+      <strong>Mount your Mediafire or Terabox video links</strong>
+      <p style="margin-top:0.4rem;font-size:0.85rem;">
+        Paste your Mediafire or Terabox links into <code>js/videos.js</code> — all cards update and new videos mount automatically.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOWNLOAD ══════════════════════════════════════════════ -->
+<section id="download">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-eyebrow" style="color:var(--yellow)">📥 Get the App</div>
+    <h2 class="section-title">Download Ikaze — It's Free</h2>
+    <p class="section-sub">Available for Android. Install directly from this page or scan the QR code.</p>
+
+    <div class="download-cards">
+      <div class="download-card" onclick="downloadAPK()">
+        <div class="download-card-icon">🤖</div>
+        <div class="download-card-title">Android APK</div>
+        <div class="download-card-sub">Direct download · Free</div>
+      </div>
+      <div class="download-card" style="opacity:0.6;cursor:not-allowed">
+        <div class="download-card-icon">🍎</div>
+        <div class="download-card-title">iOS App Store</div>
+        <div class="download-card-sub">Coming soon</div>
+      </div>
+    </div>
+
+    <a href="./downloads/ikaze.apk" class="apk-btn" id="apk-download-btn" download>
+      📥 Download APK (Android)
+    </a>
+    <span class="apk-btn-sub">Free · No sign-up required · Works offline</span>
+
+    <p class="download-note">
+      To install: Download the APK → Open on your Android phone →<br/>
+      Allow "Install from unknown sources" in Settings → Tap Install
+    </p>
+  </div>
+</section>
+
+<!-- ══ DISTRICTS ══════════════════════════════════════════════ -->
+<section id="districts">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">📍 Coverage</div>
+      <h2 class="section-title">All 30 districts, 5 provinces</h2>
+      <p class="section-sub">Ikaze covers every district in Rwanda with nearby site recommendations.</p>
+    </div>
+    <div class="provinces-grid">
+      <div class="province-card">
+        <div class="province-name">🏙️ Kigali City</div>
+        <div class="province-districts">Gasabo · Kicukiro · Nyarugenge</div>
+      </div>
+      <div class="province-card">
+        <div class="province-name">🏔️ Northern Province</div>
+        <div class="province-districts">Burera · Gakenke · Gicumbi · Musanze · Rulindo</div>
+      </div>
+      <div class="province-card">
+        <div class="province-name">🌊 Western Province</div>
+        <div class="province-districts">Karongi · Ngororero · Nyabihu · Rubavu · Rusizi · Rutsiro · Nyamasheke</div>
+      </div>
+      <div class="province-card">
+        <div class="province-name">☀️ Eastern Province</div>
+        <div class="province-districts">Bugesera · Gatsibo · Kayonza · Kirehe · Ngoma · Nyagatare · Rwamagana</div>
+      </div>
+      <div class="province-card">
+        <div class="province-name">🌿 Southern Province</div>
+        <div class="province-districts">Gisagara · Huye · Kamonyi · Muhanga · Nyamagabe · Nyanza · Nyaruguru · Ruhango</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">🇷🇼 Ikaze</div>
+      <p class="footer-desc">Rwanda's official tourism discovery platform. Built for Rwandans, welcoming to the world.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Explore</div>
+      <ul class="footer-links">
+        <li><a href="#features">App Features</a></li>
+        <li><a href="#videos">Watch Videos</a></li>
+        <li><a href="#districts">All Districts</a></li>
+        <li><a href="#download">Download</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Resources</div>
+      <ul class="footer-links">
+        <li><a href="https://visitrwanda.com" target="_blank">Visit Rwanda</a></li>
+        <li><a href="https://rdb.rw" target="_blank">Rwanda Dev Board</a></li>
+        <li><a href="https://rwandaheritage.gov.rw" target="_blank">Heritage Sites</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ikaze — Rwanda Tourism Platform</span>
+    <div class="footer-flag">
+      <div class="flag-stripe" style="background:#00A551"></div>
+      <div class="flag-stripe" style="background:#FFD700;width:8px"></div>
+      <div class="flag-stripe" style="background:#1A56A0"></div>
+      <span style="margin-left:6px">🇷🇼</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ VIDEO & APK CONFIG — paste your Mediafire/Terabox/EAS links here ═ -->
+<script src="js/videos.js"></script>
+<script>
+  const cfg = window.IKAZE_CONFIG || { apkDownloadUrl: './downloads/ikaze.apk', videos: [] };
+
+  // Wire APK download link from config
+  const apkBtn = document.getElementById('apk-download-btn');
+  if (cfg.apkDownloadUrl) {
+    apkBtn.href = cfg.apkDownloadUrl;
+    if (cfg.apkDownloadUrl.startsWith('http')) {
+      apkBtn.removeAttribute('download');
+      apkBtn.target = '_blank';
+      apkBtn.rel = 'noopener noreferrer';
+    }
+  }
+
+  // Render video cards dynamically from js/videos.js
+  const videosGrid = document.getElementById('videos-grid');
+  function detectHost(url) {
+    if (!url) return 'Mediafire / Terabox (Link pending)';
+    if (url.toLowerCase().includes('mediafire')) return 'Watch on Mediafire →';
+    if (url.toLowerCase().includes('terabox')) return 'Watch on Terabox →';
+    return 'Watch Video →';
+  }
+
+  function openVideo(url, title) {
+    if (url && url.trim() !== '') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      alert(`"${title}" link is not mounted yet. Paste your Mediafire or Terabox URL in js/videos.js.`);
+    }
+  }
+
+  cfg.videos.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.id = v.id;
+    const label = v.url ? `▶ ${detectHost(v.url)}` : '⏳ Add link in js/videos.js';
+    card.innerHTML = `
+      <div class="video-thumb">
+        <div class="video-thumb-emoji">
+          <span>${v.emoji}</span>
+          <span>${v.location}</span>
+        </div>
+        <div class="play-btn"><div class="play-circle">▶</div></div>
+      </div>
+      <div class="video-card-body">
+        <div class="video-card-title">${v.title}</div>
+        <div class="video-card-sub">${v.subtitle}</div>
+        <a href="${v.url || '#'}" class="video-card-link">${label}</a>
+      </div>
+    `;
+    card.querySelector('.video-thumb').addEventListener('click', () => openVideo(v.url, v.title));
+    card.querySelector('.video-card-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      openVideo(v.url, v.title);
+    });
+    videosGrid.appendChild(card);
+  });
+
+  function downloadAPK() {
+    apkBtn.click();
+  }
+
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

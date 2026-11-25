@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Expo and React Native
+.expo/
+.expo-shared/
+dist/
+web-build/
+*.jks
+*.keystore
+*.p12
+*.key
+*.mobileprovision
+
+# Builds and native generated files
+build/
+coverage/
+.gradle/
+Pods/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Logs and caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+.metro-health-check*
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated or downloaded media
+downloads/*
+!downloads/.gitkeep
