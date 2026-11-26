@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Urugwiro Tours",
+    "slug": "ikaze",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#00A551"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.inezayvesdelvo.ikazeapp",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Urugwiro Tours uses your location to show nearby tourist sites and guide you with live navigation."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#00A551"
+      },
+      "package": "com.inezayvesdelvo.ikazeapp",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow Urugwiro Tours to access your location to track your route and find nearby sites in Rwanda."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1ea76f0f-6619-4068-b434-75d00e11aa5c"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

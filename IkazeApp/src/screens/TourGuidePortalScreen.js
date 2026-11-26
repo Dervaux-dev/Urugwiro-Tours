@@ -149,7 +149,7 @@ export default function TourGuidePortalScreen({ navigation, route }) {
         <View style={styles.card}>
           <Text style={styles.cardTitle}>✉️ Invite Tourist by Email</Text>
           <Text style={styles.cardSub}>
-            Invite a traveler into your Ikaze portal so you can deliver trip info, permits, meeting points, and videos.
+            Invite a traveler into your Urugwiro Tours portal so you can deliver trip info, permits, meeting points, and videos.
           </Text>
 
           <TextInput

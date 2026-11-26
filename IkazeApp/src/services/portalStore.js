@@ -1,5 +1,5 @@
 // ============================================================
-//  IKAZE — Account Auth & Tour Guide Portal Store
+//  URUGWIRO TOURS — Account Auth & Tour Guide Portal Store
 //  Uses AsyncStorage locally (works offline + ready for Supabase)
 // ============================================================
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -54,8 +54,8 @@ const SEED_INVITATIONS = [
     touristEmail: 'tourist@ikaze.rw',
     touristName: 'Claire Mukamana',
     tripTitle: 'Northern Parks & Gorilla Cultural Weekend',
-    inviteCode: 'IKZ-2026',
-    personalNote: 'Muraho! Welcome to my Ikaze Tour Portal. Here are your briefing notes, meeting point, and video preview.',
+    inviteCode: 'UGT-2026',
+    personalNote: 'Muraho! Welcome to my Urugwiro Tours portal. Here are your briefing notes, meeting point, and video preview.',
     status: 'accepted',
     createdAt: '2026-11-20T09:00:00Z',
   },
@@ -172,7 +172,7 @@ export async function loginAccount({ email, password }) {
 // ── TOUR GUIDE INVITATIONS ──────────────────────────────────────
 
 function generateInviteCode() {
-  return `IKZ-${Math.floor(1000 + Math.random() * 9000)}`;
+  return `UGT-${Math.floor(1000 + Math.random() * 9000)}`;
 }
 
 export async function inviteTouristByEmail({
@@ -203,7 +203,7 @@ export async function inviteTouristByEmail({
     inviteCode: generateInviteCode(),
     personalNote:
       personalNote.trim() ||
-      `Hello! ${guide.fullName} invited you to join their Ikaze Tour Guide Portal for your Rwanda trip.`,
+      `Hello! ${guide.fullName} invited you to join their Urugwiro Tours guide portal for your Rwanda trip.`,
     status: 'pending',
     createdAt: new Date().toISOString(),
   };
@@ -215,20 +215,20 @@ export async function inviteTouristByEmail({
 
 export function sendInvitationEmailApp(invitation) {
   const subject = encodeURIComponent(
-    `Ikaze Tour Guide Invitation: ${invitation.tripTitle} (${invitation.inviteCode})`
+    `Urugwiro Tours Guide Invitation: ${invitation.tripTitle} (${invitation.inviteCode})`
   );
   const body = encodeURIComponent(
     `Muraho ${invitation.touristName},\n\n` +
-      `${invitation.guideName} (Tour Guide · ${invitation.guideLicense}) has invited you to their Ikaze Tour Portal.\n\n` +
+      `${invitation.guideName} (Tour Guide · ${invitation.guideLicense}) has invited you to their Urugwiro Tours portal.\n\n` +
       `Trip: ${invitation.tripTitle}\n` +
       `Your Portal Invite Code: ${invitation.inviteCode}\n` +
       `Registered Email: ${invitation.touristEmail}\n\n` +
       `Message from your guide:\n${invitation.personalNote}\n\n` +
       `How to join:\n` +
-      `1. Open the Ikaze app (or download it from our Ikaze website)\n` +
+      `1. Open the Urugwiro Tours app (or download it from our website)\n` +
       `2. Sign in or create an account using ${invitation.touristEmail}\n` +
       `3. Open "My Guide Portal" and enter code ${invitation.inviteCode} to view all itineraries, sites, videos, and meeting points.\n\n` +
-      `Murakoze — Ikaze mu Rwanda!`
+      `Murakoze — Urugwiro Tours welcomes you to Rwanda!`
   );
   return Linking.openURL(`mailto:${invitation.touristEmail}?subject=${subject}&body=${body}`);
 }

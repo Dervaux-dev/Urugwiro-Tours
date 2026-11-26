@@ -77,7 +77,7 @@ export default function AuthScreen({ navigation, route }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Text style={styles.backText}>← Back</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Ikaze Account Portal</Text>
+        <Text style={styles.headerTitle}>Urugwiro Tours Account Portal</Text>
         <Text style={styles.headerSub}>
           Sign in as a Tourist or Certified Tour Guide
         </Text>
@@ -263,7 +263,7 @@ export default function AuthScreen({ navigation, route }) {
 
           <TouchableOpacity style={styles.submitBtn} onPress={handleSubmit}>
             <Text style={styles.submitText}>
-              {mode === 'login' ? 'Sign In to Ikaze →' : 'Create Account & Enter →'}
+              {mode === 'login' ? 'Sign In to Urugwiro Tours →' : 'Create Account & Enter →'}
             </Text>
           </TouchableOpacity>
         </View>
