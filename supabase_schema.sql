@@ -1,5 +1,5 @@
 -- ============================================================
---  IKAZE — Compatible Cloud Database Schema (Supabase / PostgreSQL + PostGIS)
+--  URUGWIRO TOURS — Compatible Cloud Database Schema (Supabase / PostgreSQL + PostGIS)
 -- ============================================================
 -- Run this in Supabase SQL Editor if you want live cloud sync
 -- for tourist sites, Mediafire/Terabox videos, and user trip plans.

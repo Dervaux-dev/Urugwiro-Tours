@@ -6,10 +6,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Linking } from 'react-native';
 
 const KEYS = {
-  USERS: 'ikaze_users_v1',
-  SESSION: 'ikaze_session_v1',
-  INVITATIONS: 'ikaze_guide_invitations_v1',
-  DELIVERABLES: 'ikaze_guide_deliverables_v1',
+  USERS: 'urugwiro_users_v1',
+  SESSION: 'urugwiro_session_v1',
+  INVITATIONS: 'urugwiro_guide_invitations_v1',
+  DELIVERABLES: 'urugwiro_guide_deliverables_v1',
 };
 
 export const DELIVERABLE_TYPES = [
@@ -25,8 +25,8 @@ const SEED_USERS = [
   {
     id: 'guide-demo-1',
     fullName: 'Jean Paul Habimana',
-    email: 'guide@ikaze.rw',
-    password: 'ikaze123',
+    email: 'guide@urugwirotours.rw',
+    password: 'urugwiro123',
     role: 'guide',
     licenseId: 'RDB-TG-2041',
     specialty: 'Volcanoes, Nyungwe & Cultural Heritage',
@@ -35,8 +35,8 @@ const SEED_USERS = [
   {
     id: 'tourist-demo-1',
     fullName: 'Claire Mukamana',
-    email: 'tourist@ikaze.rw',
-    password: 'ikaze123',
+    email: 'tourist@urugwirotours.rw',
+    password: 'urugwiro123',
     role: 'tourist',
     nationality: 'rwandan',
     districtId: 'musanze',
@@ -49,9 +49,9 @@ const SEED_INVITATIONS = [
     id: 'inv-demo-1',
     guideId: 'guide-demo-1',
     guideName: 'Jean Paul Habimana',
-    guideEmail: 'guide@ikaze.rw',
+    guideEmail: 'guide@urugwirotours.rw',
     guideLicense: 'RDB-TG-2041',
-    touristEmail: 'tourist@ikaze.rw',
+    touristEmail: 'tourist@urugwirotours.rw',
     touristName: 'Claire Mukamana',
     tripTitle: 'Northern Parks & Gorilla Cultural Weekend',
     inviteCode: 'UGT-2026',
@@ -65,7 +65,7 @@ const SEED_DELIVERABLES = [
   {
     id: 'del-demo-1',
     invitationId: 'inv-demo-1',
-    guideEmail: 'guide@ikaze.rw',
+    guideEmail: 'guide@urugwirotours.rw',
     guideName: 'Jean Paul Habimana',
     type: 'meeting_point',
     title: 'Kinigi Park Headquarters Pickup — 06:30 AM',
@@ -77,7 +77,7 @@ const SEED_DELIVERABLES = [
   {
     id: 'del-demo-2',
     invitationId: 'inv-demo-1',
-    guideEmail: 'guide@ikaze.rw',
+    guideEmail: 'guide@urugwirotours.rw',
     guideName: 'Jean Paul Habimana',
     type: 'itinerary',
     title: 'Day 1: Volcanoes NP + Buhanga Sacred Forest',

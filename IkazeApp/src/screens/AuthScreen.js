@@ -65,7 +65,7 @@ export default function AuthScreen({ navigation, route }) {
 
   const handleDemoLogin = async (demoEmail) => {
     setError('');
-    const res = await loginAccount({ email: demoEmail, password: 'ikaze123' });
+    const res = await loginAccount({ email: demoEmail, password: 'urugwiro123' });
     if (res.ok) routeAfterAuth(res.user);
   };
 
@@ -277,15 +277,15 @@ export default function AuthScreen({ navigation, route }) {
           <View style={styles.demoBtns}>
             <TouchableOpacity
               style={[styles.demoBtn, { backgroundColor: COLORS.accent }]}
-              onPress={() => handleDemoLogin('guide@ikaze.rw')}
+              onPress={() => handleDemoLogin('guide@urugwirotours.rw')}
             >
-              <Text style={styles.demoBtnText}>🧭 Enter as Tour Guide (guide@ikaze.rw)</Text>
+              <Text style={styles.demoBtnText}>🧭 Enter as Tour Guide (guide@urugwirotours.rw)</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.demoBtn, { backgroundColor: COLORS.primary }]}
-              onPress={() => handleDemoLogin('tourist@ikaze.rw')}
+              onPress={() => handleDemoLogin('tourist@urugwirotours.rw')}
             >
-              <Text style={styles.demoBtnText}>🧳 Enter as Tourist (tourist@ikaze.rw)</Text>
+              <Text style={styles.demoBtnText}>🧳 Enter as Tourist (tourist@urugwirotours.rw)</Text>
             </TouchableOpacity>
           </View>
         </View>

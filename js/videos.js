@@ -1,18 +1,18 @@
 /**
- * IKAZE — Central Mount Configuration (App APK + Mediafire / Terabox Videos)
- * =========================================================================
+ * URUGWIRO TOURS — Central Mount Configuration (App APK + Mediafire / Terabox Videos)
+ * ==================================================================================
  * Edit this single file to mount your EAS APK download link and your
- * Mediafire or Terabox video links onto the Ikaze website.
+ * Mediafire or Terabox video links onto the Urugwiro Tours website.
  */
 
-window.IKAZE_CONFIG = {
+window.URUGWIRO_CONFIG = {
   /**
    * 1. ANDROID APK DOWNLOAD LINK
    * - Option A (EAS Build link): Paste the https://expo.dev/artifacts/eas/...apk URL from `eas build`
    * - Option B (Mediafire/Terabox APK): Paste your Mediafire or Terabox APK link
-   * - Option C (Self-hosted): Keep "./downloads/ikaze.apk" and drop the file in /downloads/ikaze.apk
+   * - Option C (Self-hosted): Keep "./downloads/urugwiro-tours.apk" and drop the file in /downloads/urugwiro-tours.apk
    */
-  apkDownloadUrl: "./downloads/ikaze.apk",
+  apkDownloadUrl: "./downloads/urugwiro-tours.apk",
 
   /**
    * 2. VIDEO LINKS (Mediafire or Terabox)

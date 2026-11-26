@@ -100,12 +100,12 @@ export default function TouristPortalScreen({ navigation, route }) {
         <View style={styles.card}>
           <Text style={styles.cardTitle}>🎟️ Join Tour Guide Invitation</Text>
           <Text style={styles.cardSub}>
-            Received an email invite from your Tour Guide? Enter your invite code (e.g. IKZ-2026) below:
+            Received an email invite from your Tour Guide? Enter your invite code (e.g. UGT-2026) below:
           </Text>
           <View style={styles.joinRow}>
             <TextInput
               style={styles.codeInput}
-              placeholder="Enter code (e.g. IKZ-2026)"
+              placeholder="Enter code (e.g. UGT-2026)"
               placeholderTextColor={COLORS.textMuted}
               autoCapitalize="characters"
               value={inviteCodeInput}
